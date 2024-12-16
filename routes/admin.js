@@ -1,19 +1,32 @@
+const path = require('path');
+
 const express = require('express');
-const path = require('path')
+
 
 const rootDir = require('../util/path');
 
-const adminRouter = express.Router();
+const router = express.Router();
 
-adminRouter.get('/add-product',(req, res, next) =>{
-    res.sendFile(path.join(rootDir,'views','add-product.html'))
+const products = [];
+
+// /admin/add-product => GET
+router.get('/add-product', (req, res, next) => {
+  //res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
+  res.render('add-product', 
+    {
+      docTitle: 'Add Product', 
+      path: '/admin/add-product',
+      activeAddProduct: true,
+      formsCSS: true,
+      productCSS: true
+    });
 });
 
-
-adminRouter.post('/product',(req, res, next) =>{
-    console.log('In the post request');
-    console.log(req.body);
-    res.redirect('/shop');
+// /admin/add-product => POST
+router.post('/add-product', (req, res, next) => {
+  products.push({title: req.body.title});
+  res.redirect('/');
 });
 
-module.exports = adminRouter;
+exports.routes = router;
+exports.products = products;
