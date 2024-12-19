@@ -19,6 +19,13 @@ main {
   text-align: center;
 }
 
+.image {
+  height: 20rem;
+}
+
+.image img {
+  height: 100%;
+}
 .smallImage {
   width: 4in;
   height: 6in;
