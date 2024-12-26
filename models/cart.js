@@ -1,4 +1,20 @@
-const fs = require('fs');
+const Sequalize = require('sequelize');
+const sequelize = require('../util/database');
+
+const Cart = sequelize.define('cart', {
+    id: {
+        type: Sequalize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    }
+});
+
+module.exports = Cart;
+
+
+//Code for managing cart using file stored in file system
+/* const fs = require('fs');
 const path = require('path');
 
 const p = path.join(
@@ -73,3 +89,4 @@ module.exports = class Cart {
 
 
 
+ */
